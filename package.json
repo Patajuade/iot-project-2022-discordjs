@@ -1,4 +1,8 @@
 {
+  "scripts":{
+    "go" : "node deploy-commands.js && node main.js"
+  },
+  
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
