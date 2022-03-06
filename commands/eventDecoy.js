@@ -10,32 +10,24 @@ function getRandomArbitrary(min, max) {
     result = Math.random() * (max - min) + min;
     return Math.ceil(result);
   }
-  //const attachment = new MessageAttachment();
-  function getAnImageOfTheNumberObtained(randomNumber){
-      if (randomNumber == 1) {
-        attachment = new MessageAttachment('C:/Users/MVP PatateChaude/Desktop/numbersImages/1.png', '1.png');
-              return attachment;
-      }
-      if (randomNumber == 2) {
-        attachment = new MessageAttachment('C:/Users/MVP PatateChaude/Desktop/numbersImages/2.png', '2.png');
-              return attachment;
-      }
-      if (randomNumber == 3) {
-        attachment = new MessageAttachment('C:/Users/MVP PatateChaude/Desktop/numbersImages/3.png', '3.png');
-              return attachment;
-      }
-      
+
+  function getAttachement(randomNumber){
+    return new MessageAttachment(`./local-resources/${randomNumber}.png`, `result.png`);
   }
 
-const message = (userInteractingName, userInteractingAvatar, randomNumber)=>new MessageEmbed()
+  function getThumbnail(){
+      return new MessageAttachment(`./local-resources/thumbnail.png`, `thumbnail.png`);
+  }
+
+const message = (userInteractingName, userInteractingAvatar)=>new MessageEmbed()
     .setColor('#3c020c')
     .setTitle(userInteractingName + ' a secoué le dé !')
     .setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
     .setAuthor({ name: userInteractingName, iconURL: userInteractingAvatar, url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley' })
     .setDescription('Hé bah jespère que vous secouez pas votre queue comme ça...')
-    .setThumbnail('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2YP6ghYK9gBo1F4p7-bpNaiHafo77dVppZA&usqp=CAU')
-    .addField('___________________', 'Resultat du rand : '+ randomNumber, true)
-    .setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2YP6ghYK9gBo1F4p7-bpNaiHafo77dVppZA&usqp=CAU')
+    .setThumbnail('attachment://thumbnail.png')
+    .addField('___________________', 'Resultat : ', true)
+    .setImage('attachment://result.png')
     .setTimestamp()
 
 module.exports = {
@@ -45,9 +37,13 @@ module.exports = {
         .setDescription('Does its job for once'),
 
     async execute(interaction) {
+        //c'est mieux de mettre dans des var
+        const randomNumber = getRandomArbitrary(1,20);
+        const file = getAttachement(randomNumber);
+        const thumbnail = getThumbnail();
 
         //channel.send({ embeds: [exampleEmbed] });
-        await interaction.reply({ embeds: [message(interaction.user.tag, interaction.user.displayAvatarURL(),getRandomArbitrary(1,20))] });
+        await interaction.reply({ embeds: [message(interaction.user.tag, interaction.user.displayAvatarURL())],files: [file,thumbnail] });
         //const guild = new Guild(interaction.guild.id).channels;
         //console.log(guild);
     }
