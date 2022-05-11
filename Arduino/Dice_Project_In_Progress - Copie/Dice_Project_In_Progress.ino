@@ -6,7 +6,6 @@
 #include <Adafruit_SPITFT.h>
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
-#include <SoftwareSerial.h> //for esp
 
 #ifdef __AVR__
  #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
@@ -19,7 +18,6 @@
 #define off            0,0,0
 // Tilt's pin
 const int tiltPin = 7;
-
 
 // how many pixels, which pin to use to send signals.
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
