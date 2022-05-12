@@ -7,6 +7,9 @@
 const fs = require('node:fs'); //fs is Node's native file sustem module
 const { Client, Collection ,Intents } = require('discord.js');
 const { token } = require('./config.json');
+const fetch = require('node-fetch'); //to require node-fetch (for rest API)
+
+fetch('https://aws.random.cat/meow').then(response => response.json()); //test fetch API
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -30,6 +33,14 @@ client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return; //check if an interaction is a command
 
 	const command = client.commands.get(interaction.commandName);
+
+	//Bloc test API
+	if (commandName === 'cat') {
+		await interaction.deferReply();
+		const { file } = await fetch('https://aws.random.cat/meow').then(response => response.text());
+		interaction.editReply({ files: [file] });
+	}
+	//Fin bloc test API
 
 	if (!command) return;
 
