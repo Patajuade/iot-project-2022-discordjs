@@ -7,9 +7,39 @@
 const fs = require('node:fs'); //fs is Node's native file sustem module
 const { Client, Collection ,Intents } = require('discord.js');
 const { token } = require('./config.json');
-const fetch = require('node-fetch'); //to require node-fetch (for rest API)
+const {message,getAttachement,getThumbnail} = require('./commands/eventDecoy');
 
-fetch('https://aws.random.cat/meow').then(response => response.json()); //test fetch API
+//REST API part
+const express = require("express");
+const { json } = require('express/lib/response');
+const app = express();
+const port = 8080;
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.listen(port,()=>{
+	console.log("coucou");
+});
+
+//localhost:8080/teub
+//comportement quand le client fait get
+app.get("/teub",(req,res)=>{
+	console.log("gros lolo");
+	const {result} = req.query;
+	if(result>0 && result<=20){
+		const file = getAttachement(result);
+		const thumbnail = getThumbnail();
+	
+		const chan = client.channels.cache.find(c=>c.name==="général");
+		chan.send({ embeds: [message("La main", "https://cdn.mycrazystuff.com/10416/mini-main-pour-doigt.jpg")],files: [file,thumbnail] });
+		return res.status(200).json({
+			message:result
+		});
+	}
+	return res.status(402).json({
+		message:"Action non autorisée :("
+	});
+});
+
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -33,14 +63,6 @@ client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return; //check if an interaction is a command
 
 	const command = client.commands.get(interaction.commandName);
-
-	//Bloc test API
-	if (commandName === 'cat') {
-		await interaction.deferReply();
-		const { file } = await fetch('https://aws.random.cat/meow').then(response => response.text());
-		interaction.editReply({ files: [file] });
-	}
-	//Fin bloc test API
 
 	if (!command) return;
 

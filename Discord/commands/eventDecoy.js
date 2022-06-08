@@ -31,7 +31,9 @@ const message = (userInteractingName, userInteractingAvatar)=>new MessageEmbed()
     .setTimestamp()
 
 module.exports = {
-
+    getAttachement,
+    getThumbnail,
+    message,
     data: new SlashCommandBuilder()
         .setName('rand')
         .setDescription('Does its job for once'),
