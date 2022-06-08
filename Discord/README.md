@@ -9,3 +9,9 @@
 
 Démarrer le bot : 
 Dans le terminal ..\Discord, taper "npm run go", qui est le script permettant le lancement des deux commandes suivantes : "node deploy-commands.js" et "node main.js"
+
+Démarer le bot via cmd
+ssh ubuntu@ip_add
+pwd vps
+Aller dans le dossier du projet
+npm run go

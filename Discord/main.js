@@ -20,10 +20,10 @@ app.listen(port,()=>{
 	console.log("Express API is ready");
 });
 
-//localhost:8080/teub
+//localhost:8080/roll
 //comportement quand le client fait get
 app.get("/roll",(req,res)=>{
-	const {result} = req.query;
+	const {result} = req.query; //récupère result dans l'URL : localhost:8080/roll?result=5
 	if(result>0 && result<=20){
 		const file = getAttachement(result);
 		const thumbnail = getThumbnail();
