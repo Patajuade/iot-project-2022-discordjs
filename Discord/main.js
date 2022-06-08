@@ -17,13 +17,12 @@ const port = 8080;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.listen(port,()=>{
-	console.log("coucou");
+	console.log("Express API is ready");
 });
 
 //localhost:8080/teub
 //comportement quand le client fait get
-app.get("/teub",(req,res)=>{
-	console.log("gros lolo");
+app.get("/roll",(req,res)=>{
 	const {result} = req.query;
 	if(result>0 && result<=20){
 		const file = getAttachement(result);
@@ -55,7 +54,7 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('Discord bot is ready!');
 });
 
 //replying to commands
