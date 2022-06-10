@@ -91,6 +91,23 @@ void setup() {
   pixels.show();
 }
 
+void sendNumberToNodeMCU(int num){
+   StaticJsonBuffer<1000> jsonBuffer;
+      JsonObject& data = jsonBuffer.createObject();
+
+      Serial.print("Result : ");
+      Serial.println(num);
+
+      //Assign collected data to JSON Object
+      data["result"] = num;
+
+      //Send data to NodeMCU
+      data.printTo(nodemcu);
+      jsonBuffer.clear();
+
+      //delay(2000);
+}
+
 void loop() {
  
   //loop listening to the tilt's state
@@ -99,21 +116,7 @@ void loop() {
   randNum = random(1,21);
   
     if(tiltSensorValue==LOW){
-      StaticJsonBuffer<1000> jsonBuffer;
-      JsonObject& data = jsonBuffer.createObject();
-
-      Serial.print("Result : ");
-      Serial.println(randNum);
-
-      //Assign collected data to JSON Object
-      data["result"] = randNum;
-
-      //Send data to NodeMCU
-      data.printTo(nodemcu);
-      jsonBuffer.clear();
-
-      //delay(2000);
-   
+     sendNumberToNodeMCU(randNum);
       if (randNum==1){
         for (int i = 0; i < sizeNum1; i++){
           pixels.setPixelColor(num1[i],0,0,255);
