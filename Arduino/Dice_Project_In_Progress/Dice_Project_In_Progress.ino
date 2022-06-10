@@ -7,6 +7,7 @@
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
 #include <SoftwareSerial.h> //for esp
+#include <ArduinoJson.h> //for esp
 
 #ifdef __AVR__
  #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
@@ -20,9 +21,10 @@
 // Tilt's pin
 const int tiltPin = 7;
 
-
 // how many pixels, which pin to use to send signals.
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+//nodeMCU
+SoftwareSerial nodemcu(5, 3);
 
 int delayVal = 5000;         // Delay in milliseconds between changing displayed number
 int randNum;                 // Variable to store the random number
@@ -77,9 +79,15 @@ int sizeNum20 = sizeof num20 / sizeof num20[0];
 
 
 void setup() {
+  //NodeMCU setup
+  Serial.begin(115200);
+  nodemcu.begin(115200);
+  delay(1000);
+  Serial.println("Program started");
+
+  //Matrix setup
   pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
   pinMode(tiltPin, INPUT); // INITIALIZE tilts pin
-  Serial.begin(9600); //for tilt tests
   pixels.show();
 }
 
@@ -89,9 +97,23 @@ void loop() {
   int tiltSensorValue = digitalRead(tiltPin);
   delay(100);
   randNum = random(1,21);
-  //randNum = 13;
   
-    if(tiltSensorValue==LOW){ 
+    if(tiltSensorValue==LOW){
+      StaticJsonBuffer<1000> jsonBuffer;
+      JsonObject& data = jsonBuffer.createObject();
+
+      Serial.print("Result : ");
+      Serial.println(randNum);
+
+      //Assign collected data to JSON Object
+      data["result"] = randNum;
+
+      //Send data to NodeMCU
+      data.printTo(nodemcu);
+      jsonBuffer.clear();
+
+      //delay(2000);
+   
       if (randNum==1){
         for (int i = 0; i < sizeNum1; i++){
           pixels.setPixelColor(num1[i],0,0,255);
