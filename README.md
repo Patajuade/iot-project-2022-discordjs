@@ -22,6 +22,8 @@ Celui qui n'a pas encore son dé peut simplement écrire `/rand` dans le chat di
 
 # Fonctionnement
 
+Le dé est équipé d'un switch ON/OFF permettant de mettre en route l'objet. Une fois sur ON, il cherchera un réseau wifi connu auquel se connecter (s'il n'en trouve pas, il fonctionnera quand même, mais n'enverra pas de message sur discord.)
+
 Lorsque l'on secoue le dé, il génère un nombre random. Ce résultat est affiché sur la matrice de leds lui servant d'écran. Ces deux opérations sont gérées par l'arduino. Ensuite, l'arduino envoie ce résultat à l'ESP. L'ESP va se comporter en tant que client du bot discord. Il envoie le numéro obtenu au bot discord via une requête GET.
 
 Le bot discord est sur un serveur OVH et a une IP dédiée, c'est sur cette IP qu'on va faire la requête.
