@@ -12,8 +12,8 @@ SoftwareSerial nodemcu(D5, D3);
 
 ESP8266WebServer server;
 
-char* ssid = "VOO-036325";
-char* password = "JGHYYJQW";
+char* ssid = "Pouet";
+char* password = "niquetamere";
 
 //Your Domain name with URL path or IP address with path
 String serverName = "http://51.68.126.43:8080/roll";
