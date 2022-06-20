@@ -79,3 +79,4 @@ Le bot discord recoit le résultat, et en fait un joli message.
     - Tentatives vaines d'utiliser l'imprimante 3D pour l'impression de la boîte
     - Tentatives vaines de faire un circuit propre
     - Elaboration de solutions de secours
+    - Vidéo avancement n°2

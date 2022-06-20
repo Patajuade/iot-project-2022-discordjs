@@ -8,8 +8,14 @@ Les fichiers principaux sont `main.js` où on retrouve la partie principale du c
 Démarrer le bot : 
 Dans le terminal ..\Discord, taper "npm run go", qui est le script permettant le lancement des deux commandes suivantes : "node deploy-commands.js" et "node main.js"
 
+OVH : 
+
 Démarer le bot via cmd
+
 ssh ubuntu@ip_add
+
 pwd vps
+
 Aller dans le dossier du projet
+
 npm run go
