@@ -9,6 +9,9 @@ Ce projet rassemble les différents fichiers constituant mon projet d'IOT B2Q2.
 # Description du projet
 
 J'ai créé un dé 20, qui fonctionne avec un bot discord.
+![Cannot display image](finished_project2.jpg "screen")
+![Cannot display image](finished_project3.jpg "screen")
+
 
 ### **Mise en scène ;**
 
@@ -22,7 +25,7 @@ Celui qui n'a pas encore son dé peut simplement écrire `/rand` dans le chat di
 
 # Fonctionnement
 
-Le dé est équipé d'un switch ON/OFF permettant de mettre en route l'objet. Une fois sur ON, il cherchera un réseau wifi connu auquel se connecter (s'il n'en trouve pas, il fonctionnera quand même, mais n'enverra pas de message sur discord.)
+Le dé est équipé d'un switch ON/OFF permettant de mettre en route l'objet et d'une batterie rechargeable. Une fois sur ON, il cherchera un réseau wifi connu auquel se connecter (s'il n'en trouve pas, il fonctionnera quand même, mais n'enverra pas de message sur discord.)
 
 Lorsque l'on secoue le dé, il génère un nombre random. Ce résultat est affiché sur la matrice de leds lui servant d'écran. Ces deux opérations sont gérées par l'arduino. Ensuite, l'arduino envoie ce résultat à l'ESP. L'ESP va se comporter en tant que client du bot discord. Il envoie le numéro obtenu au bot discord via une requête GET sur la REST API du bot.
 
