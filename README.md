@@ -24,9 +24,11 @@ Celui qui n'a pas encore son dé peut simplement écrire `/rand` dans le chat di
 
 Le dé est équipé d'un switch ON/OFF permettant de mettre en route l'objet. Une fois sur ON, il cherchera un réseau wifi connu auquel se connecter (s'il n'en trouve pas, il fonctionnera quand même, mais n'enverra pas de message sur discord.)
 
-Lorsque l'on secoue le dé, il génère un nombre random. Ce résultat est affiché sur la matrice de leds lui servant d'écran. Ces deux opérations sont gérées par l'arduino. Ensuite, l'arduino envoie ce résultat à l'ESP. L'ESP va se comporter en tant que client du bot discord. Il envoie le numéro obtenu au bot discord via une requête GET.
+Lorsque l'on secoue le dé, il génère un nombre random. Ce résultat est affiché sur la matrice de leds lui servant d'écran. Ces deux opérations sont gérées par l'arduino. Ensuite, l'arduino envoie ce résultat à l'ESP. L'ESP va se comporter en tant que client du bot discord. Il envoie le numéro obtenu au bot discord via une requête GET sur la REST API du bot.
 
-Le bot discord est sur un serveur OVH et a une IP dédiée, c'est sur cette IP qu'on va faire la requête.
+Le bot discord est sur un serveur OVH et a une IP dédiée.
+
+Via l'IP on accède au serveur, via le port on accède au service (le backend du bot/serveur), via une route on accède à la logique associée écrite dans le code.
 
 Le bot discord recoit le résultat, et en fait un joli message.
 
@@ -34,9 +36,13 @@ Le bot discord recoit le résultat, et en fait un joli message.
 
 # Améliorations envisageables
  - Une plus jolie boîte
- - Un plus joli circuit
  - Des options : D4, D6, D10
  - une interface pour se connecter au wifi (sans devoir l'hard-coder dans l'ESP)
+ - Faire le rand sur le serveur directement pour plus de sécurité (si on a l'IP et la route, on peut faire dire n'importe quoi au bot). On aurait aussi peu authentifier la route avec des credential, mais la meilleure solution aurait été de laisser le serveur faire toute la logique.
+ Il faudrait enlever l'argument result = 20.
+ ![Cannot display image](insomnia.png "screen")
+ - Dans le cadre de cette requête, ça devrait être un POST. Mais si on avait fait l'amélioration citée précédement, on aurait pu laisser un GET (puisque ça aurait été l'ESP qui reçevrait une info du serveur(bot))
+
 
  #
 

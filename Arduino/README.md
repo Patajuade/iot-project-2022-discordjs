@@ -1,8 +1,6 @@
-
-
-J'avais fait un schéma eagle mais il est parti dans les limbes...
-
 # Arduino / ESP
+
+![Cannot display image](schematics.png "schematics")
 
 **Liste de composants :**
 -	Arduino uno
