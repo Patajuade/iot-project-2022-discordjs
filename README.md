@@ -4,18 +4,23 @@
 
 Ce projet rassemble les différents fichiers constituant mon projet d'IOT B2Q2.
 
+Chaque dossier a son README.md associé.
+
 #
 
 # Description du projet
 
 J'ai créé un dé 20, qui fonctionne avec un bot discord.
+
+Sur la boite, j'ai prévu des trous pour les connectiques de l'arduino, de l'ESP, de la batterie, et pour le bouton ON/OFF. 
+
 ![Cannot display image](finished_project2.jpg "screen")
 ![Cannot display image](finished_project3.jpg "screen")
 
 
 ### **Mise en scène ;**
 
-Nous sommes 4 personnes et nous jouons à un jeu de rôles. 3 d'entre nous ont un dé, et le 4eme joueur n'en a pas (parce que c'est long à fabriquer...).
+Nous sommes 4 personnes et nous jouons à un jeu de rôles à distance, communiquant grâce à Discord. 3 d'entre nous ont un dé, et le 4eme joueur n'en a pas (parce que c'est long à fabriquer...).
 
 Lorsqu'un joueur "lance" son dé, il voit le résultat dessus, et ce résultat est aussi envoyé sur le channel discord où tous les joueurs sur le channel de la partie peuvent le voir.
 
@@ -84,10 +89,14 @@ Le bot discord recoit le résultat, et en fait un joli message.
     -	Le bot répond aux commandes GET d’un client (Commande qui sera envoyée par l’ESP)
     -	Mise en place du Bot discord sur un serveur OVH  
 
-
 * Semaine 13/06 - 19/06
     - ESP se connecte au partage de connection du téléphone
     - Tentatives vaines d'utiliser l'imprimante 3D pour l'impression de la boîte
     - Tentatives vaines de faire un circuit propre
     - Elaboration de solutions de secours
     - Vidéo avancement n°2
+
+* Semaine 20/06
+    - Création d'un shield arduino
+    - Création d'une boîte
+    - Finitions 
