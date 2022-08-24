@@ -6,7 +6,7 @@ Ce projet rassemble les différents fichiers constituant mon projet d'IOT B2Q2.
 
 Chaque dossier a son README.md associé.
 
-## >>>>> [ ▶ Explicative video of the project !](https://youtube.com/shorts/RzYcZVs91R8) <<<<<
+## >>>>> [ ▶ Video of the dice !](https://youtube.com/shorts/RzYcZVs91R8) <<<<<
 
 #
 
